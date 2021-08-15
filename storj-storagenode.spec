@@ -14,7 +14,6 @@ Source2: storj-storagenode.conf
 
 Source11: storj-storagenode@.service
 Source12: storj-storagenode-setup@.service
-Source13: storj-storagenode-dashboard@.service
 
 
 BuildRequires: systemd-rpm-macros
@@ -40,7 +39,6 @@ install -D -m755 -p storagenode %{buildroot}%{_bindir}/storagenode
 
 install -D -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/storj-storagenode@.service
 install -D -p -m 0644 %{SOURCE12} %{buildroot}%{_unitdir}/storj-storagenode-setup@.service
-install -D -p -m 0644 %{SOURCE13} %{buildroot}%{_unitdir}/storj-storagenode-dashboard@.service
 
 install -dD -m 0750 %{buildroot}%{_sharedstatedir}/storj-storagenode
 
@@ -71,7 +69,6 @@ exit 0
 %config %dir %attr(-,-,storj-storagenode) %{_sysconfdir}/storj-storagenode
 %{_bindir}/storagenode
 %{_unitdir}/storj-storagenode@.service
-%{_unitdir}/storj-storagenode-dashboard@.service
 %{_unitdir}/storj-storagenode-setup@.service
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
 
