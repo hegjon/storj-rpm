@@ -16,7 +16,6 @@ Source11: storj-storagenode@.service
 Source12: storj-storagenode-setup@.service
 Source13: storj-storagenode-dashboard@.service
 
-BuildArch: x86_64
 
 BuildRequires: systemd-rpm-macros
 %{?systemd_requires}
