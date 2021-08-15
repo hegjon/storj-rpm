@@ -1,6 +1,6 @@
 srpm:
 		mkdir SOURCES
-		cp storagenode/* SOURCES
+		cp -v storagenode/* SOURCES
 
 		dnf install -y rpmdevtools rpm-build
 		spectool -g -C SOURCES storj-storagenode.spec
