@@ -1,0 +1,19 @@
+[Unit]
+Description=Storj Storage Node Dashboard %i
+After=network.target remote-fs.target storj-storagenode@.service
+
+[Service]
+Type=simple
+User=storj-storagenode
+Group=storj-storagenode
+Restart=on-failure
+RestartSec=10s
+
+EnvironmentFile=/etc/storj-storagenode/%i.conf
+ExecStart=/usr/bin/storagenode dashboard \
+  --config-dir ${CONFIG_DIR} \
+  --identity-dir %h/identity-%i \
+  --console.address=${CONSOLE}
+
+[Install]
+WantedBy=multi-user.target
