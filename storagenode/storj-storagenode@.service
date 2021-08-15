@@ -13,7 +13,7 @@ RestartSec=10s
 EnvironmentFile=/etc/storj-storagenode/%i.conf
 ExecStart=/usr/bin/storagenode run \
   --config-dir ${CONFIG_DIR} \
-  --identity-dir %h/identity-%i \
+  --identity-dir ~/%i/identity \
   --metrics.app-suffix=-%i \
   --metrics.interval=30m \
   --contact.external-address=${ADDRESS} \
