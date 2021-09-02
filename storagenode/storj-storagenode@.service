@@ -9,6 +9,7 @@ User=storj-storagenode
 Group=storj-storagenode
 Restart=on-failure
 RestartSec=30s
+TimeoutStopSec=300s
 
 EnvironmentFile=/etc/storj-storagenode/%i.conf
 ExecStart=/usr/bin/storagenode run \
