@@ -1,8 +1,13 @@
-srpm:
-		mkdir SOURCES
-		cp -v storagenode/* SOURCES
+NAME = storagenode
 
-		dnf install -y rpmdevtools
-		spectool -g -C SOURCES storj-storagenode.spec
+srpm: /usr/bin/spectool
+	mkdir -p SOURCES
 
-		rpmbuild -bs $(spec) --define "_sourcedir SOURCES" --define "_srcrpmdir $(outdir)"
+	NAME=storagenode
+	cp -v ${NAME}/* SOURCES
+	spectool -g -C SOURCES ${spec}
+
+	rpmbuild -bs ${spec} --define "_sourcedir SOURCES" --define "_srcrpmdir $(outdir)"
+
+/usr/bin/spectool:
+	dnf install -y rpmdevtools
