@@ -2,20 +2,22 @@
 
 Name:    storj-storagenode
 Version: 1.37.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
 URL:     https://storj.io/
 
-Source0:  https://github.com/storj/storj/releases/download/v%{version}/storagenode_linux_amd64.zip
+Source0:  https://github.com/storj/storj/archive/refs/tags/v%{version}.tar.gz
+Source1:  https://github.com/storj/storj/releases/download/v%{version}/storagenode_linux_amd64.zip
 
 Source2: storj-storagenode.conf
 
 Source11: storj-storagenode@.service
 Source12: storj-storagenode-setup@.service
 
-
+BuildRequires: npm
+BuildRequires: unzip
 BuildRequires: systemd-rpm-macros
 %{?systemd_requires}
 
@@ -27,15 +29,20 @@ network of computers. Luckily, we also support allowing you (and only you) to
 retrieve those files!
 
 %prep
-%setup -c
+%setup -n storj-%{version}
+cp %{SOURCE1} .
 cp %{SOURCE2} .
 
 
 %build
-#no build, the zip contains the binary
+#only web console, the zip contains the binary
+cd web/storagenode
+npm ci
+npm run build
 
 %install
-install -D -m755 -p storagenode %{buildroot}%{_bindir}/storagenode
+install -dD -m755 %{buildroot}%{_bindir}
+unzip storagenode_linux_amd64.zip -d %{buildroot}%{_bindir}
 
 install -D -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/storj-storagenode@.service
 install -D -p -m 0644 %{SOURCE12} %{buildroot}%{_unitdir}/storj-storagenode-setup@.service
@@ -45,6 +52,9 @@ install -dD -m 0750 %{buildroot}%{_sharedstatedir}/storj-storagenode
 
 install -dD -m 0750 %{buildroot}%{_sysconfdir}/storj-storagenode
 
+#web console
+install -dD -m755 %{buildroot}%{_datadir}
+cp -a web/storagenode/dist %{buildroot}%{_datadir}/%{name}
 
 %pre
 getent group storj-storagenode >/dev/null || groupadd -r storj-storagenode
@@ -71,8 +81,12 @@ exit 0
 %{_unitdir}/storj-storagenode@.service
 %{_unitdir}/storj-storagenode-setup@.service
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
+%{_datadir}/%{name}
 
 %changelog
+* Thu Sep 02 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-2
+- Include web console files
+
 * Thu Sep 02 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-1
 - Updated to version 1.37.2
 

@@ -8,12 +8,13 @@ Type=simple
 User=storj-storagenode
 Group=storj-storagenode
 Restart=on-failure
-RestartSec=10s
+RestartSec=30s
 
 EnvironmentFile=/etc/storj-storagenode/%i.conf
 ExecStart=/usr/bin/storagenode run \
   --config-dir ${CONFIG_DIR} \
   --identity-dir ~/%i/identity \
+  --console.static-dir=/usr/share/storj-storagenode \
   --metrics.app-suffix=-%i \
   --metrics.interval=30m \
   --contact.external-address=${ADDRESS} \
