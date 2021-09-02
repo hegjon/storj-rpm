@@ -53,8 +53,8 @@ install -dD -m 0750 %{buildroot}%{_sharedstatedir}/storj-storagenode
 install -dD -m 0750 %{buildroot}%{_sysconfdir}/storj-storagenode
 
 #web console
-install -dD -m755 %{buildroot}%{_datadir}
-cp -a web/storagenode/dist %{buildroot}%{_datadir}/%{name}
+install -dD -m755 %{buildroot}%{_datadir}/%{name}
+cp -a web/storagenode/dist %{buildroot}%{_datadir}/%{name}/
 
 %pre
 getent group storj-storagenode >/dev/null || groupadd -r storj-storagenode
