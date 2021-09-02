@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:    storj-storagenode
-Version: 1.35.3
+Version: 1.37.2
 Release: 1%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
@@ -73,5 +73,8 @@ exit 0
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
 
 %changelog
+* Thu Sep 02 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-1
+- Updated to version 1.37.2
+
 * Sun Aug 08 2021 Jonny Heggheim <hegjon@gmail.com> - 1.35.3-1
 - Initial package from pre-built binary
