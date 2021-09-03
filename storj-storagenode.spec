@@ -2,19 +2,21 @@
 
 Name:    storj-storagenode
 Version: 1.37.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
 URL:     https://storj.io/
 
 Source0:  https://github.com/storj/storj/archive/refs/tags/v%{version}.tar.gz
-Source1:  https://github.com/storj/storj/releases/download/v%{version}/storagenode_linux_amd64.zip
 
 Source2: storj-storagenode.conf
 
 Source11: storj-storagenode@.service
 Source12: storj-storagenode-setup@.service
+
+BuildRequires: go
+BuildRequires: git
 
 BuildRequires: npm
 BuildRequires: unzip
@@ -30,19 +32,22 @@ retrieve those files!
 
 %prep
 %setup -n storj-%{version}
-cp %{SOURCE1} .
 cp %{SOURCE2} .
 
 
 %build
-#only web console, the zip contains the binary
+export GOPATH="$(pwd)/.godeps"
+go install -v ./cmd/...
+
+#web console
 cd web/storagenode
 npm ci
 npm run build
 
 %install
-install -dD -m755 %{buildroot}%{_bindir}
-unzip storagenode_linux_amd64.zip -d %{buildroot}%{_bindir}
+install -dD -m 755 %{buildroot}%{_bindir}
+install -m 755 .godeps/bin/storagenode %{buildroot}%{_bindir}/storagenode
+
 
 install -D -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/storj-storagenode@.service
 install -D -p -m 0644 %{SOURCE12} %{buildroot}%{_unitdir}/storj-storagenode-setup@.service
@@ -84,6 +89,9 @@ exit 0
 %{_datadir}/%{name}
 
 %changelog
+* Fri Sep 03 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-4
+- Build storagenode from source
+
 * Fri Sep 03 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-3
 - Fixed wrong placement of web consile files
 
