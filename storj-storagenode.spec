@@ -2,7 +2,7 @@
 
 Name:    storj-storagenode
 Version: 1.37.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
@@ -84,6 +84,9 @@ exit 0
 %{_datadir}/%{name}
 
 %changelog
+* Fri Sep 03 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-3
+- Fixed wrong placement of web consile files
+
 * Thu Sep 02 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-2
 - Include web console files
 
