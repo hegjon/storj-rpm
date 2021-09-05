@@ -1,6 +1,6 @@
 # RPM files for Storj
 
-[![Copr build status](https://copr.fedorainfracloud.org/coprs/jonny/Storj/package/storj-storagenode/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jonny/Storj/package/storj-storagenode/)
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/jonny/Storj/package/storj/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jonny/Storj/package/storj/)
 
 Built on Fedora Copr at https://copr.fedorainfracloud.org/coprs/jonny/Storj/
 
