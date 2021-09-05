@@ -34,6 +34,7 @@ retrieve those files!
 
 %package storagenode
 Summary: Storj Storage Node
+Requires: storj-identity
 
 %description storagenode
 Storj is an S3-compatible platform and suite of decentralized applications that
@@ -111,12 +112,12 @@ exit 0
 %{_bindir}/storagenode
 %{_unitdir}/storj-storagenode@.service
 %{_unitdir}/storj-storagenode-setup@.service
+%{_unitdir}/storj-identity-create@.service
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
 %{_datadir}/%{name}
 
 %files identity
 %{_bindir}/identity
-%{_unitdir}/storj-identity-create@.service
 
 %changelog
 * Sun Sep 05 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-5

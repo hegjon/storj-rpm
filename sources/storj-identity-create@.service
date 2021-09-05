@@ -1,5 +1,5 @@
 [Unit]
-Description=Storj Storage Node %i identity
+Description=Storj Identity %i
 
 [Service]
 Type=oneshot
@@ -8,8 +8,9 @@ Group=storj-storagenode
 EnvironmentFile=/etc/storj-storagenode/%i.conf
 RemainAfterExit=no
 
-ExecCondition=test ! -f "${CONFIG_DIR}/config.yaml"
+ExecCondition=test ! -f "~/%i/identity/identity.key"
 
+ExecStartPre=/bin/mkdir -p "~/%i/identity"
 ExecStart=/usr/bin/identity create \
   --config-dir ${CONFIG_DIR} \
-  --identity-dir ~/%i/identity
+  --identity-dir "~/%i/identity"
