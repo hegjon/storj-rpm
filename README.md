@@ -4,3 +4,14 @@
 
 Built on Fedora Copr at https://copr.fedorainfracloud.org/coprs/jonny/Storj/
 
+## How to build the RPM locally
+
+Make srpm:
+```
+$ make -f .copr/Makefile srpm outdir=. spec=/home/jonny/projects/storj-rpms/storj.spec
+```
+
+Make rpm:
+```
+$ mock --rebuild --enable-network ./storj-${VERSION}.src.rpm
+```
