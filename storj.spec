@@ -15,6 +15,8 @@ Source2: storj-storagenode.conf
 Source11: storj-storagenode@.service
 Source12: storj-storagenode-setup@.service
 
+Source21: storj-identity-create@.service
+
 BuildRequires: go
 BuildRequires: git
 
@@ -71,8 +73,10 @@ install -m 755 .godeps/bin/storagenode %{buildroot}%{_bindir}/storagenode
 install -m 755 .godeps/bin/identity %{buildroot}%{_bindir}/identity
 
 
-install -D -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/storj-storagenode@.service
-install -D -p -m 0644 %{SOURCE12} %{buildroot}%{_unitdir}/storj-storagenode-setup@.service
+install -dD -m 755 %{buildroot}%{_unitdir}
+install -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/
+install -p -m 0644 %{SOURCE12} %{buildroot}%{_unitdir}/
+install -p -m 0644 %{SOURCE21} %{buildroot}%{_unitdir}/
 
 install -dD -m 0750 %{buildroot}%{_sharedstatedir}/storj-storagenode
 
@@ -112,6 +116,7 @@ exit 0
 
 %files identity
 %{_bindir}/identity
+%{_unitdir}/storj-identity-create@.service
 
 %changelog
 * Sun Sep 05 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-5
