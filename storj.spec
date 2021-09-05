@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
-Name:    storj-storagenode
+Name:    storj
 Version: 1.37.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
@@ -30,6 +30,27 @@ encrypted, broken into little pieces and stored in a global decentralized
 network of computers. Luckily, we also support allowing you (and only you) to
 retrieve those files!
 
+%package storagenode
+Summary: Storj Storage Node
+
+%description storagenode
+Storj is an S3-compatible platform and suite of decentralized applications that
+allows you to store data in a secure and decentralized manner. Your files are
+encrypted, broken into little pieces and stored in a global decentralized
+network of computers. Luckily, we also support allowing you (and only you) to
+retrieve those files!
+
+%package identity
+Summary: Storj Identity
+
+%description identity
+Storj is an S3-compatible platform and suite of decentralized applications that
+allows you to store data in a secure and decentralized manner. Your files are
+encrypted, broken into little pieces and stored in a global decentralized
+network of computers. Luckily, we also support allowing you (and only you) to
+retrieve those files!
+
+
 %prep
 %setup -n storj-%{version}
 cp %{SOURCE2} .
@@ -47,6 +68,7 @@ npm run build
 %install
 install -dD -m 755 %{buildroot}%{_bindir}
 install -m 755 .godeps/bin/storagenode %{buildroot}%{_bindir}/storagenode
+install -m 755 .godeps/bin/identity %{buildroot}%{_bindir}/identity
 
 
 install -D -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/storj-storagenode@.service
@@ -61,7 +83,7 @@ install -dD -m 0750 %{buildroot}%{_sysconfdir}/storj-storagenode
 install -dD -m755 %{buildroot}%{_datadir}/%{name}
 cp -a web/storagenode/dist %{buildroot}%{_datadir}/%{name}/
 
-%pre
+%pre storagenode
 getent group storj-storagenode >/dev/null || groupadd -r storj-storagenode
 getent passwd storj-storagenode >/dev/null || \
   useradd -r -g storj-storagenode -s /sbin/nologin \
@@ -70,16 +92,16 @@ getent passwd storj-storagenode >/dev/null || \
 exit 0
 
 
-%post
+%post storagenode
 %systemd_post storj-storagenode@.service
 
-%preun
+%preun storagenode
 %systemd_preun storj-storagenode@.service
 
-%postun
+%postun storagenode
 %systemd_postun_with_restart storj-storagenode@\*.service
 
-%files
+%files storagenode
 %doc storj-storagenode.conf
 %config %dir %attr(-,-,storj-storagenode) %{_sysconfdir}/storj-storagenode
 %{_bindir}/storagenode
@@ -88,7 +110,13 @@ exit 0
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
 %{_datadir}/%{name}
 
+%files identity
+%{_bindir}/identity
+
 %changelog
+* Sun Sep 05 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-5
+- Added storj-identity
+
 * Fri Sep 03 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-4
 - Build storagenode from source
 
