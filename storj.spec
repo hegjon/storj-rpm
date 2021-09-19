@@ -85,8 +85,8 @@ install -dD -m 0750 %{buildroot}%{_sharedstatedir}/storj-storagenode
 install -dD -m 0750 %{buildroot}%{_sysconfdir}/storj-storagenode
 
 #web console
-install -dD -m755 %{buildroot}%{_datadir}/%{name}
-cp -a web/storagenode/dist %{buildroot}%{_datadir}/%{name}/
+install -dD -m755 %{buildroot}%{_datadir}/storj-storagenode
+cp -a web/storagenode/dist %{buildroot}%{_datadir}/storj-storagenode/
 
 %pre storagenode
 getent group storj-storagenode >/dev/null || groupadd -r storj-storagenode
@@ -114,7 +114,7 @@ exit 0
 %{_unitdir}/storj-storagenode-setup@.service
 %{_unitdir}/storj-identity-create@.service
 %attr(0770,storj-storagenode,storj-storagenode) %{_sharedstatedir}/storj-storagenode
-%{_datadir}/%{name}
+%{_datadir}/storj-storagenode
 
 %files identity
 %{_bindir}/identity
