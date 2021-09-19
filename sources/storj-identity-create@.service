@@ -1,5 +1,5 @@
 [Unit]
-Description=Storj Identity %i
+Description=Storj Identity %i create
 
 [Service]
 Type=oneshot
