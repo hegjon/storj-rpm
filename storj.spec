@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:    storj
-Version: 1.37.2
-Release: 7%{?dist}
+Version: 1.39.5
+Release: 1%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
@@ -120,6 +120,9 @@ exit 0
 %{_bindir}/identity
 
 %changelog
+* Mon Oct 04 2021 Jonny Heggheim <hegjon@gmail.com> - 1.39.5-1
+- Updated to version 1.39.5
+
 * Sun Sep 19 2021 Jonny Heggheim <hegjon@gmail.com> - 1.37.2-7
 - storj-storagenode-setup requires storj-identity-create
 
