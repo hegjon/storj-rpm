@@ -22,7 +22,13 @@ BuildRequires: git
 
 BuildRequires: npm
 BuildRequires: unzip
+
+%if 0%{?mageia} > 0
+BuildRequires: systemd
+%else
 BuildRequires: systemd-rpm-macros
+%endif
+
 %{?systemd_requires}
 
 %description
