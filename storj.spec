@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:    storj
-Version: 1.49.5
+Version: 1.50.4
 Release: 1%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
@@ -126,6 +126,9 @@ exit 0
 %{_bindir}/identity
 
 %changelog
+* Sat Mar 19 2022 Jonny Heggheim <hegjon@gmail.com> - 1.50.4-1
+- Updated to version 1.50.4
+
 * Thu Mar 10 2022 Jonny Heggheim <hegjon@gmail.com> - 1.49.5-1
 - Updated to version 1.49.5
 
