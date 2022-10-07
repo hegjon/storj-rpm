@@ -67,7 +67,7 @@ cp %{SOURCE2} .
 
 %build
 export GOPATH="$(pwd)/.godeps"
-go install -v ./cmd/...
+go install -v ./cmd/{storagenode,identity}
 
 #web console
 cd web/storagenode
