@@ -32,43 +32,32 @@ BuildRequires: systemd-rpm-macros
 
 %{?systemd_requires}
 
-%description
+%global _description %{expand:
 Storj is an S3-compatible platform and suite of decentralized applications that
 allows you to store data in a secure and decentralized manner. Your files are
 encrypted, broken into little pieces and stored in a global decentralized
 network of computers. Luckily, we also support allowing you (and only you) to
 retrieve those files!
+}
+
+%description %_description
+
 
 %package storagenode
 Summary: Storj Storage Node
 Requires: storj-identity
 
-%description storagenode
-Storj is an S3-compatible platform and suite of decentralized applications that
-allows you to store data in a secure and decentralized manner. Your files are
-encrypted, broken into little pieces and stored in a global decentralized
-network of computers. Luckily, we also support allowing you (and only you) to
-retrieve those files!
+%description storagenode %_description
 
 %package identity
 Summary: Storj Identity
 
-%description identity
-Storj is an S3-compatible platform and suite of decentralized applications that
-allows you to store data in a secure and decentralized manner. Your files are
-encrypted, broken into little pieces and stored in a global decentralized
-network of computers. Luckily, we also support allowing you (and only you) to
-retrieve those files!
+%description identity %_description
 
 %package uplink
 Summary: Storj Uplink
 
-%description uplink
-Storj is an S3-compatible platform and suite of decentralized applications that
-allows you to store data in a secure and decentralized manner. Your files are
-encrypted, broken into little pieces and stored in a global decentralized
-network of computers. Luckily, we also support allowing you (and only you) to
-retrieve those files!
+%description uplink %_description
 
 
 %prep
