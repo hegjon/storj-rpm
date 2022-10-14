@@ -2,8 +2,8 @@
 %global _build_id_links none
 
 Name:    storj
-Version: 1.64.1
-Release: 2%{?dist}
+Version: 1.65.1
+Release: 1%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
 License: AGPLv3
@@ -130,6 +130,9 @@ exit 0
 %{_bindir}/uplink
 
 %changelog
+* Fri Oct 14 2022 Jonny Heggheim <hegjon@gmail.com>
+- Updated to version 1.65.1
+
 * Fri Oct 07 2022 Jonny Heggheim <hegjon@gmail.com> - 1.64.1-2
 - Added uplink sub-package
 
