@@ -21,8 +21,8 @@ Source21: storj-identity-create@.service
 BuildRequires: go
 BuildRequires: git
 
-BuildRequires: npm
-BuildRequires: unzip
+BuildRequires: /usr/bin/npm
+BuildRequires: /usr/bin/unzip
 
 %if 0%{?mageia} > 0
 BuildRequires: systemd
