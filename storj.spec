@@ -2,7 +2,7 @@
 %global _build_id_links none
 
 Name:    storj
-Version: 1.74.1
+Version: 1.76.2
 Release: 1%{?dist}
 Summary: Storj is building a decentralized cloud storage network
 
@@ -130,6 +130,9 @@ exit 0
 %{_bindir}/uplink
 
 %changelog
+* Mon May 01 2023 Jonny Heggheim <hegjon@gmail.com> - 1.76.2-1
+- Updated to version 1.76.2
+
 * Tue Mar 28 2023 Jonny Heggheim <hegjon@gmail.com> - 1.74.1-1
 - Updated to version 1.74.1
 
